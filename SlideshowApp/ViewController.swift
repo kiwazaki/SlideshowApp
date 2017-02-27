@@ -12,11 +12,17 @@ class ViewController: UIViewController{
 
     @IBOutlet weak var imageView: UIImageView!
     
+    
+    @IBOutlet weak var maeButton: UIButton!
+    
+    @IBOutlet weak var tugiButton: UIButton!
+    
     var timer: Timer!
     var imageNo = 0
     
     
-    @IBAction func maeButton(_ sender: Any) {
+    
+    @IBAction func maeButton(_ sender: Any){
             imageNo -= 1
             displayImage()
     }
@@ -36,16 +42,20 @@ class ViewController: UIViewController{
             
           (sender as AnyObject).setTitle("停止", for: .normal)
             timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(onTimer), userInfo: nil, repeats: true)
-            
+            maeButton.isEnabled = false
+            tugiButton.isEnabled = false            
         }else{
             
             (sender as AnyObject).setTitle("再生", for: .normal)
             self.timer.invalidate()
             self.timer = nil
-            
+            maeButton.isEnabled = true
+            tugiButton.isEnabled = true
         }
         
     }
+    
+
     
     func displayImage() {
         
