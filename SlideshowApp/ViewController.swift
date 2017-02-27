@@ -8,14 +8,17 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController{
 
     @IBOutlet weak var imageView: UIImageView!
     
+    var timer: Timer!
+    var imageNo = 0
+    
     
     @IBAction func maeButton(_ sender: Any) {
-        imageNo -= 1
-        displayImage()
+            imageNo -= 1
+            displayImage()
     }
     
     @IBAction func tugiButton(_ sender: Any) {
@@ -23,26 +26,36 @@ class ViewController: UIViewController {
         displayImage()
     }
     
+    @IBAction func unwind(segue: UIStoryboardSegue){
+    }
 
     @IBAction func playButton(_ sender: Any) {
         // タイマーを設定
-        timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(onTimer), userInfo: nil, repeats: true)
+        
+        if self.timer == nil {
+            
+          (sender as AnyObject).setTitle("停止", for: .normal)
+            timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(onTimer), userInfo: nil, repeats: true)
+            
+        }else{
+            
+            (sender as AnyObject).setTitle("再生", for: .normal)
+            self.timer.invalidate()
+            self.timer = nil
+            
+        }
+        
     }
-    
-    
-    var timer: Timer?
-    
-    var imageNo = 0
     
     func displayImage() {
         
         let imageNameArray = [
-        "img1", "img2", "img3", "img4", "img5",
+        "img1", "img2", "img3",
         ]
         if imageNo < 0 {
-            imageNo = 4
+            imageNo = 2
         }
-        if imageNo > 4 {
+        if imageNo > 2 {
             imageNo = 0
         }
         let name = imageNameArray[imageNo]
@@ -57,14 +70,19 @@ class ViewController: UIViewController {
         imageView.image = image
     }
     
+    /// Segueで遷移する際のメソッド
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        let kakudaiViewController:KakudaiViewController = segue.destination as! KakudaiViewController
+        kakudaiViewController.image = imageView.image!
+    }
+    
+    
     /// Timerによって、一定の間隔で呼び出される関数
     func onTimer(timer: Timer) {
-        
-        print("onTimer")
-        
         imageNo += 1
         displayImage()
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
