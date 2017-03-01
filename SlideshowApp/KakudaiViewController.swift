@@ -12,13 +12,17 @@ import UIKit
 
 class KakudaiViewController: UIViewController {
     
+    
     @IBOutlet weak var imageView2: UIImageView!
+    
+
     
     var image : UIImage = UIImage()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         imageView2.image = image
+        
         // Do any additional setup after loading the view.
     }
 

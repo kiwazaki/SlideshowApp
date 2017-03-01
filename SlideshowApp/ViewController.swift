@@ -12,14 +12,12 @@ class ViewController: UIViewController{
 
     @IBOutlet weak var imageView: UIImageView!
     
-    
     @IBOutlet weak var maeButton: UIButton!
     
     @IBOutlet weak var tugiButton: UIButton!
     
     var timer: Timer!
     var imageNo = 0
-    
     
     
     @IBAction func maeButton(_ sender: Any){
@@ -55,12 +53,11 @@ class ViewController: UIViewController{
         
     }
     
-
     
     func displayImage() {
         
         let imageNameArray = [
-        "img1", "img2", "img3",
+        "img1.jpg", "img2.jpg", "img3.jpg",
         ]
         if imageNo < 0 {
             imageNo = 2
@@ -76,7 +73,7 @@ class ViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let image = UIImage(named: "img1")
+        let image = UIImage(named: "img1.jpg")
         imageView.image = image
     }
     
@@ -84,6 +81,11 @@ class ViewController: UIViewController{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         let kakudaiViewController:KakudaiViewController = segue.destination as! KakudaiViewController
         kakudaiViewController.image = imageView.image!
+
+        if self.timer !== nil {
+            self.timer.invalidate()
+        }
+        
     }
     
     
