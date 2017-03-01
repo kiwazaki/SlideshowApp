@@ -16,6 +16,8 @@ class ViewController: UIViewController{
     
     @IBOutlet weak var tugiButton: UIButton!
     
+    @IBOutlet weak var playButton: UIButton!
+    
     var timer: Timer!
     var imageNo = 0
     
@@ -53,6 +55,7 @@ class ViewController: UIViewController{
         
     }
     
+
     
     func displayImage() {
         
@@ -81,9 +84,12 @@ class ViewController: UIViewController{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         let kakudaiViewController:KakudaiViewController = segue.destination as! KakudaiViewController
         kakudaiViewController.image = imageView.image!
-
         if self.timer !== nil {
             self.timer.invalidate()
+            self.timer = nil
+            maeButton.isEnabled = true
+            tugiButton.isEnabled = true
+            playButton.setTitle("再生", for: .normal)
         }
         
     }

@@ -76,6 +76,7 @@
                     <connections>
                         <outlet property="imageView" destination="cZE-sL-RoV" id="uEK-qC-50J"/>
                         <outlet property="maeButton" destination="sTk-bn-sG5" id="Y9w-sP-VmH"/>
+                        <outlet property="playButton" destination="nQy-zP-lJy" id="Bgd-nj-JwM"/>
                         <outlet property="tugiButton" destination="Xtk-td-XcK" id="jpV-Cz-FUa"/>
                     </connections>
                 </viewController>
